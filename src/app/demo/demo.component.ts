@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from 'angularx-social-login';
 import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider } from 'angularx-social-login';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -14,13 +16,20 @@ export class DemoComponent implements OnInit {
 
   user: SocialUser;
 
-  constructor(private authService: AuthService) { }
+
+    constructor(private authService: AuthService, private router:Router) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
     });
   }
+
+  navTo(){
+      this.router.navigate(['/twitterData']);
+  }
+
+
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);

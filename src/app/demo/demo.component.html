@@ -18,7 +18,7 @@
     <div class="card-block" style="padding: 15px">
       <!--<button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>-->
       <button style="background:#3b5998!important;" class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
-      <a href="/twitterData"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
+      <a  (click)="navTo()"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
 
 
 
@@ -36,7 +36,7 @@
       <p class="card-text">{{ user.email }}</p>
     </div>
     <div class="card-block">
-      <a href="/twitterData"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
+      <a (click)="navTo()"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
 
         <!--<button class="btn btn-danger" (click)="signOut()">Sign out</button>-->
     </div>
