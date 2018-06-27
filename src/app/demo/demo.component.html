@@ -1,0 +1,43 @@
+<div class="jumbotron bg-transparent text-center">
+
+    <div style="font-size: 60px;
+    color: #f44336;line-height: 111px">
+
+        Welcome to JanaSena Dashboard
+    </div>
+  <div *ngIf="!user" class="card text-center" style="margin-top: 10%">
+    <!--<h6 class="card-header">-->
+        <!--Welcome to JanaSena Dashboard-->
+    <!--</h6>-->
+    <div class="card-block" style="padding: 20px;
+    color: #444444;
+    font-size: 20px;">
+      <!--<h4 class="card-title">Not signed in</h4>-->
+      <p class="card-text">Sign in with</p>
+    </div>
+    <div class="card-block" style="padding: 15px">
+      <!--<button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>-->
+      <button style="background:#3b5998!important;" class="btn btn-social-icon btn-facebook" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+      <!--<button class="btn btn-social-icon btn-linkedin" (click)="signInWithLinkedIn()"><span class="fa fa-linkedin"></span></button>-->
+    </div>
+  </div>
+  <div *ngIf="user" class="card text-center">
+    <h6 class="card-header">
+      Social Login Demo
+    </h6>
+    <div class="card-block"></div>
+    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+    <div class="card-block">
+      <h4 class="card-title">{{ user.name }}</h4>
+      <p class="card-text">{{ user.email }}</p>
+    </div>
+    <div class="card-block">
+      <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+    </div>
+  </div>
+
+
+
+
+</div>
+
