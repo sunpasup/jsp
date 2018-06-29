@@ -48,8 +48,8 @@
           <figure *ngFor="let cards of twitterData">
               <img src="{{cards.url}}">
               <figcaption>
-                  <button mat-raised-button type="submit" class="btn btn-danger pull-left" *ngIf="admin">Approve</button>
-                  <button mat-raised-button type="submit" class="btn btn-danger pull-right" *ngIf="admin">Decline</button>
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>
                   <font>{{user.name}}</font>
                   <!--<div class="sharethis-inline-share-buttons"></div>-->
 

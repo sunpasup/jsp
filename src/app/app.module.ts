@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { ShareModule } from '@ngx-share/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 
 
@@ -81,7 +83,7 @@ export function provideConfig() {
   providers: [{
       provide: AuthServiceConfig,
       useFactory: provideConfig
-  }
+  },{provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
