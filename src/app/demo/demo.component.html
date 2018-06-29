@@ -26,17 +26,16 @@
     </div>
   </div>
   <div *ngIf="user" class="card text-center">
-    <h6 class="card-header">
-      Social Login Demo
-    </h6>
+    <h6 class="card-header" style="line-height: 30px">
+      Welcome  <br> <font style="font-size: 20px; color:#f44336; padding: 20px">{{ user.name }}</font>   </h6>
     <div class="card-block"></div>
-    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+    <img class="img-responsive photo" src="{{ user.photoUrl }}">
     <div class="card-block">
-      <h4 class="card-title">{{ user.name }}</h4>
-      <p class="card-text">{{ user.email }}</p>
+      <!--<h4 class="card-title">{{ user.name }}</h4>-->
+      <!--<p class="card-text">{{ user.email }}</p>-->
     </div>
-    <div class="card-block" style="text-align: center">
-      <a (click)="navTo()"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
+    <div class="card-block text-center" style="float: right; padding: 20px">
+      <a (click)="navTo()" style="float: right"><button mat-raised-button type="submit" class="btn btn-danger pull-left">Lets go</button></a>
 
         <!--<button class="btn btn-danger" (click)="signOut()">Sign out</button>-->
     </div>

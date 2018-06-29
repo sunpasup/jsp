@@ -22,11 +22,12 @@ export class DemoComponent implements OnInit {
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
+      console.log(user);
     });
   }
 
   navTo(){
-      this.router.navigate(['/twitterData']);
+      this.router.navigate(['/dashboard']);
   }
 
 
