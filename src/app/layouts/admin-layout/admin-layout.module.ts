@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { DashboardTdpComponent} from '../../dashboard-tdp/dashboard-tdp.component';
+import { DashboardYcpComponent} from '../../dashboard-ycp/dashboard-ycp.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
@@ -30,6 +32,8 @@ import {
   ],
   declarations: [
     DashboardComponent,
+      DashboardTdpComponent,
+      DashboardYcpComponent,
       IconsComponent,
     UserProfileComponent,
     TableListComponent,

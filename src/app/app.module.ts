@@ -37,6 +37,8 @@ import { DemoComponent } from './demo/demo.component'
 
 import { SocialLoginModule } from 'angularx-social-login';
 import { AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider  } from 'angularx-social-login';
+import { DashboardYcpComponent } from './dashboard-ycp/dashboard-ycp.component';
+import { DashboardTdpComponent } from './dashboard-tdp/dashboard-tdp.component';
 
 
 const config = new AuthServiceConfig([
