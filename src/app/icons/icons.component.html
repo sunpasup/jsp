@@ -1,55 +1,40 @@
-
+<ngx-spinner
+        bdColor="rgba(51,51,51,0.8)"
+        size="medium"
+        color="#fff"
+        loadingText="Loading..."
+        type="ball-scale-multiple">
+</ngx-spinner>
 <div class="main-content">
   <div class="container-fluid">
-      <!--<div class="card card-plain">-->
-          <!--<div class="card-header card-header-danger">-->
-              <!--<h4 class="card-title">Material Design Icons</h4>-->
-              <!--<p class="card-category">Handcrafted by our friends from-->
-                  <!--<a target="_blank" href="https://design.google.com/icons/">Google</a>-->
-              <!--</p>-->
-          <!--</div>-->
-          <!--<div class="row">-->
-              <!--<div class="col-md-12">-->
-                  <!--<div class="card-body">-->
-                      <!--<div class="iframe-container d-none d-lg-block">-->
-                          <!--<iframe src="https://design.google.com/icons/">-->
-                              <!--<p>Your browser does not support iframes.</p>-->
-                          <!--</iframe>-->
-                      <!--</div>-->
-                      <!--<div class="col-md-12 d-none d-sm-block d-md-block d-lg-none d-block d-sm-none text-center ml-auto mr-auto">-->
-                          <!--<h5>The icons are visible on Desktop mode inside an iframe. Since the iframe is not working on Mobile and Tablets please visit the icons on their original page on Google. Check the-->
-                              <!--<a href="https://design.google.com/icons/" target="_blank">Material Icons</a>-->
-                          <!--</h5>-->
-                      <!--</div>-->
-                  <!--</div>-->
-              <!--</div>-->
-          <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="row">-->
-          <!--<div class="col-lg-3 col-md-6 col-sm-6"  *ngFor="let cards of twitterData">-->
-              <!--<div class="card card-stats">-->
-                  <!--<div class="card-header card-header-warning card-header-icon">-->
-                     <!--<img src="{{cards.url}}" width="100%" height="70%">-->
-                  <!--</div>-->
-                  <!--<div class="card-footer">-->
-                      <!--<div class="stats">-->
-                          <!--<i class="material-icons text-danger">warning</i>-->
-                          <!--<a href="#pablo">Get More Space...</a>-->
-                      <!--</div>-->
-                  <!--</div>-->
-              <!--</div>-->
-          <!--</div>-->
-      <!--</div>-->
+<div style="margin-bottom: 10px">
+      <div class="btn-group" style="margin-top: -25px">
+          <button class="btn mat-raised-button" mat-raised-button="" type="button" [ngClass]=" isImages ? 'btn-danger':'btn-white'" (click)="showImages()">
+              <span class="mat-button-wrapper">Images</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div>
+          </button>
+          <button class="btn mat-raised-button" mat-raised-button="" type="button" [ngClass]=" isVideos ? 'btn-danger':'btn-white'" (click)="showVideos()">
+              <span class="mat-button-wrapper">Videos</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div>
+          </button>
+          <button class="btn mat-raised-button" mat-raised-button="" type="button" [ngClass]=" isTweets ? 'btn-danger':'btn-white'" (click)="showTweets()">
+              <span class="mat-button-wrapper">Tweets</span><div class="mat-button-ripple mat-ripple" matripple=""></div><div class="mat-button-focus-overlay"></div>
+          </button>
+      </div>
+                <jw-pagination [items]="twitterData" (changePage)="onChangePage($event)" [pageSize]="50" *ngIf="isImages"></jw-pagination>
+    <jw-pagination [items]="tweetData" (changePage)="onChangePage($event)" [pageSize]="50" *ngIf="isTweets"></jw-pagination>
+    <jw-pagination [items]="youtubeData" (changePage)="onChangePage($event)" [pageSize]="50" *ngIf="isVideos"></jw-pagination>
 
 
+</div>
 
-      <div id="columns">
-          <figure *ngFor="let cards of twitterData">
+
+      <div id="columns" *ngIf="isImages">
+
+          <figure *ngFor="let cards of pageOfItems">
               <img src="{{cards.url}}">
               <figcaption>
-                  <button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>
-                  <button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>
+                  images
+                  <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
+                  <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
                   <!--<font>{{user.name}}</font>-->
                   <!--<div class="sharethis-inline-share-buttons"></div>-->
 
@@ -61,7 +46,7 @@
 
                    <div style="display: inline-flex; float: right">
                   <div class="fb-share-button" [attr.data-href]="cards.url" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                      <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fpbs.twimg.com%2Fmedia%2FDf1eFiTUYAAbsrQ.jpg&amp;src=sdkpreparse"
+                      <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=' + cards.text +'&picture=' + cards.url + '&amp;src=sdkpreparse'"
                          class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">
                           <i class="fa fa-facebook"></i></a></div>
 
@@ -69,7 +54,73 @@
 
               </figcaption>
           </figure>
+      </div>
+
+      <div id="columns" *ngIf="isTweets">
+
+          <figure *ngFor="let tweets of pageOfItems">
+
+              <blockquote class="twitter-tweet">
+                  <p lang="pt" dir="ltr">{{tweets.text}}</p>&mdash; {{tweets.screenName}}
+                  <a [attr.href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'">July 16, 2018</a></blockquote>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              <figcaption>
+                  tweets
+                  <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
+                  <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
+                  <!--<font>{{user.name}}</font>-->
+                  <!--<div class="sharethis-inline-share-buttons"></div>-->
+
+
+                  <!--<div class="fb-share-button" [attr.data-href]="cards.url"-->
+                  <!--data-layout="button"></div>-->
+
+                  <!--<a [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank">Share on Twitter</a>-->
+
+                  <div style="display: inline-flex; float: right">
+                      <div class="fb-share-button" [attr.data-href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                          <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw&amp;src=sdkpreparse'"
+                             class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">
+                              <i class="fa fa-facebook"></i></a></div>
+
+                      <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
+
+              </figcaption>
+          </figure>
+      </div>
+
+          <div id="columns" *ngIf="isVideos">
+
+              <figure *ngFor="let videos of pageOfItems">
+              <iframe width="350" height="315"
+              [src]=sanitizer.bypassSecurityTrustResourceUrl(videos.youtubeURL)>
+              </iframe>
+              <figcaption>
+              <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
+              <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
+              <!--<font>{{user.name}}</font>-->
+              <!--<div class="sharethis-inline-share-buttons"></div>-->
+
+
+              <!--<div class="fb-share-button" [attr.data-href]="cards.url"-->
+              <!--data-layout="button"></div>-->
+
+              <!--<a [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank">Share on Twitter</a>-->
+
+              <!--<div style="display: inline-flex; float: right">-->
+              <!--<div class="fb-share-button" [attr.data-href]="" data-layout="button_count" data-size="small" data-mobile-iframe="true">-->
+              <!--<a target="_blank" [attr.href]="''"-->
+              <!--class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">-->
+              <!--<i class="fa fa-facebook"></i></a></div>-->
+
+              <!--<a class="btn btn-danger btn-round" [attr.href]="" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>-->
+
+              </figcaption>
+              </figure>
+
 
       </div>
+
+
   </div>
 </div>

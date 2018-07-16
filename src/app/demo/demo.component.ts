@@ -27,7 +27,7 @@ export class DemoComponent implements OnInit {
   }
 
   navTo(){
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/data']);
   }
 
 

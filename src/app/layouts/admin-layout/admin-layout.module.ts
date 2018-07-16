@@ -13,6 +13,10 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { JwPaginationComponent } from 'jw-angular-pagination';
+
+
 
 import {
   MatButtonModule,
@@ -29,6 +33,7 @@ import {
     MatRippleModule,
     MatInputModule,
     MatTooltipModule,
+      NgxSpinnerModule
   ],
   declarations: [
     DashboardComponent,
@@ -40,7 +45,8 @@ import {
     TypographyComponent,
     MapsComponent,
     NotificationsComponent,
-    UpgradeComponent
+    UpgradeComponent,
+      JwPaginationComponent
   ]
 })
 

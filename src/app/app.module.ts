@@ -7,13 +7,8 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
 import { ShareModule } from '@ngx-share/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
-
-
-
-
-
-
+import { HttpModule } from '@angular/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -63,11 +58,13 @@ export function provideConfig() {
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+      NgxSpinnerModule,
       ShareButtonsModule.forRoot(),
       ShareModule.forRoot(),
       FontAwesomeModule,
     FormsModule,
       HttpClientModule,
+      HttpModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
@@ -80,7 +77,6 @@ export function provideConfig() {
     AppComponent,
     AdminLayoutComponent,
       DemoComponent
-
   ],
   providers: [{
       provide: AuthServiceConfig,

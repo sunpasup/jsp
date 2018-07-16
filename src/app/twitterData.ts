@@ -1085,3 +1085,47 @@ export const sampleData= [
         "retweetCount":3
     }
 ];
+
+
+export const sampleYouTubeData= [
+    {
+        "id": 1,
+        "videoID": "72ECcN8MsVc",
+        "title": "Nara Lokesh Dance Performance  - TDP Minister",
+        "positive": 0,
+        "negative": 0,
+        "mixed": 0,
+        "createdAt": "2018-07-12T23:00:35.487+0000",
+        "updatedAt": "2018-07-12T23:00:35.487+0000"
+    },
+    {
+        "id": 2,
+        "videoID": "tnG-Rj7dVaM",
+        "title": "TG Venkatesh Sensational Comments On Minister Nara Lokesh ll Pulihora News",
+        "positive": 13,
+        "negative": 0,
+        "mixed": 0,
+        "createdAt": "2018-07-12T23:00:35.552+0000",
+        "updatedAt": "2018-07-12T23:00:35.552+0000"
+    },
+    {
+        "id": 3,
+        "videoID": "zPsziwxzOPs",
+        "title": "లోకేష్ పై టీజీ ఫైర్ ! | TG Venkatesh slams Nara Lokesh | AP Elections | Newsmarg",
+        "positive": 10,
+        "negative": 0,
+        "mixed": 0,
+        "createdAt": "2018-07-12T23:00:35.597+0000",
+        "updatedAt": "2018-07-12T23:00:35.597+0000"
+    },
+    {
+        "id": 4,
+        "videoID": "bM7v5PI7BmA",
+        "title": "Nara Lokesh Requests TDP Ministers to Start Booth level Campaigns | Overseas News",
+        "positive": 0,
+        "negative": 0,
+        "mixed": 0,
+        "createdAt": "2018-07-12T23:00:35.665+0000",
+        "updatedAt": "2018-07-12T23:00:35.665+0000"
+    }
+];
