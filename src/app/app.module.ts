@@ -39,7 +39,7 @@ import { DashboardTdpComponent } from './dashboard-tdp/dashboard-tdp.component';
 const config = new AuthServiceConfig([
     {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com')
+        provider: new GoogleLoginProvider('185498431527-j23jjbsp88g71qmcvn9o7me1220s5iaa.apps.googleusercontent.com')
     },
     {
         id: FacebookLoginProvider.PROVIDER_ID,

@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Http, Response} from '@angular/http'
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { sampleData, sampleYouTubeData } from '../twitterData';
 import {AuthService, SocialUser} from 'angularx-social-login';
 import 'rxjs/add/operator/map'

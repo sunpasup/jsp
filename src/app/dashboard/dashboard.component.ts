@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import {Http, Response} from '@angular/http';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/mergeMap';
+
+
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +15,20 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+    analyticsData: any = {};
+    public  analyticsAPI="https://janagence.herokuapp.com/analytics";
+
+  constructor(public http: Http) { }
+
+
+    getAnalyticsData(){
+        return this.http.get(this.analyticsAPI).map((res:Response) => res.json())
+    }
+
+    getAnalytics(){
+        this.getAnalyticsData().subscribe(analyticsData => {console.log(analyticsData); this.analyticsData= analyticsData});
+
+        }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -66,6 +86,10 @@ export class DashboardComponent implements OnInit {
       seq2 = 0;
   };
   ngOnInit() {
+
+      this.getAnalyticsData();
+      this.getAnalytics();
+
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {

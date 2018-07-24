@@ -29,10 +29,9 @@
 
       <div id="columns" *ngIf="isImages">
 
-          <figure *ngFor="let cards of pageOfItems">
-              <img src="{{cards.url}}">
+          <figure *ngFor="let images of pageOfItems">
+              <img src="{{images}}">
               <figcaption>
-                  images
                   <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
                   <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
                   <!--<font>{{user.name}}</font>-->
@@ -45,12 +44,12 @@
                   <!--<a [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank">Share on Twitter</a>-->
 
                    <div style="display: inline-flex; float: right">
-                  <div class="fb-share-button" [attr.data-href]="cards.url" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                      <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=' + cards.text +'&picture=' + cards.url + '&amp;src=sdkpreparse'"
+                  <div class="fb-share-button" [attr.data-href]="images" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                      <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=' + images +'&picture=' + images + '&amp;src=sdkpreparse'"
                          class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">
                           <i class="fa fa-facebook"></i></a></div>
 
-                      <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
+                      <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/home?status=' + images" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
 
               </figcaption>
           </figure>
@@ -61,12 +60,16 @@
           <figure *ngFor="let tweets of pageOfItems">
 
               <blockquote class="twitter-tweet">
-                  <p lang="pt" dir="ltr">{{tweets.text}}</p>&mdash; {{tweets.screenName}}
+                  <p lang="pt" dir="ltr">{{tweets.text}}</p>&mdash; <a [attr.href]="'https://twitter.com/' + tweets.users[0]">{{tweets.users[0]}}</a>
                   <!--<a [attr.href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'">July 16, 2018</a>-->
               </blockquote>
+
+              <span *ngIf="tweets.sentiment=='NEUTRAL'" class="badge badge-primary" style="padding: 10px">{{tweets.sentiment}}</span>
+              <span *ngIf="tweets.sentiment=='POSITIVE'" class="badge badge-success" style="padding: 10px">{{tweets.sentiment}}</span>
+              <span *ngIf="tweets.sentiment=='NEGATIVE'" class="badge badge-danger" style="padding: 10px">{{tweets.sentiment}}</span>
+
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
               <figcaption>
-                  tweets
                   <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
                   <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
                   <!--<font>{{user.name}}</font>-->
@@ -79,12 +82,12 @@
                   <!--<a [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank">Share on Twitter</a>-->
 
                   <div style="display: inline-flex; float: right">
-                      <div class="fb-share-button" [attr.data-href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'" data-layout="button_count" data-size="small" data-mobile-iframe="true">
-                          <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw&amp;src=sdkpreparse'"
+                      <div class="fb-share-button" [attr.data-href]="'https://twitter.com/' + tweets.users[0] + '/status/' + tweets.tweets[0] + '?ref_src=twsrc%5Etfw'" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+                          <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=https://twitter.com/' +  tweets.users[0] + '/status/' +tweets.tweets[0] + '?ref_src=twsrc%5Etfw&amp;src=sdkpreparse'"
                              class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">
                               <i class="fa fa-facebook"></i></a></div>
 
-                      <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/' + tweets.username + '/status/' + tweets.tweetID + '?ref_src=twsrc%5Etfw'" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
+                      <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/' + tweets.users[0] + '/status/' + tweets.tweets[0] + '?ref_src=twsrc%5Etfw'" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
 
               </figcaption>
           </figure>
@@ -93,29 +96,35 @@
           <div id="columns" *ngIf="isVideos">
 
               <figure *ngFor="let videos of pageOfItems">
-              <iframe width="350" height="315"
-              [src]=sanitizer.bypassSecurityTrustResourceUrl(videos.youtubeURL)>
-              </iframe>
+                  <img src="{{videos.youtubeThumbnail}}">
+
+
+              <!--<iframe width="350" height="315"-->
+              <!--[src]=sanitizer.bypassSecurityTrustResourceUrl(videos.youtubeURL)>-->
+              <!--</iframe>-->
               <figcaption>
               <!--<button mat-raised-button type="submit" class="btn btn-danger pull-left">Approve</button>-->
               <!--<button mat-raised-button type="submit" class="btn btn-danger pull-right">Decline</button>-->
               <!--<font>{{user.name}}</font>-->
               <!--<div class="sharethis-inline-share-buttons"></div>-->
+                  <span *ngIf="videos.sentiment=='NEUTRAL'" class="badge badge-primary" style="padding: 10px">{{videos.sentiment}}</span>
+                  <span *ngIf="videos.sentiment=='POSITIVE'" class="badge badge-success" style="padding: 10px">{{videos.sentiment}}</span>
+                  <span *ngIf="videos.sentiment=='NEGATIVE'" class="badge badge-danger" style="padding: 10px">{{videos.sentiment}}</span>
 
 
-              <!--<div class="fb-share-button" [attr.data-href]="cards.url"-->
-              <!--data-layout="button"></div>-->
 
-              <!--<a [attr.href]="'https://twitter.com/home?status=' + cards.text" target="_blank">Share on Twitter</a>-->
+                  <div class="fb-share-button" [attr.data-href]="videos.youtubeURL"
+              data-layout="button"></div>
 
-              <!--<div style="display: inline-flex; float: right">-->
-              <!--<div class="fb-share-button" [attr.data-href]="" data-layout="button_count" data-size="small" data-mobile-iframe="true">-->
-              <!--<a target="_blank" [attr.href]="''"-->
-              <!--class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">-->
-              <!--<i class="fa fa-facebook"></i></a></div>-->
+              <!--<a [attr.href]="'https://twitter.com/home?status=' + videos.youtubeURL" target="_blank">Share on Twitter</a>-->
 
-              <!--<a class="btn btn-danger btn-round" [attr.href]="" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>-->
+              <div style="display: inline-flex; float: right">
+              <div class="fb-share-button" [attr.data-href]="" data-layout="button_count" data-size="small" data-mobile-iframe="true">
+              <a target="_blank" [attr.href]="'https://www.facebook.com/sharer/sharer.php?u=https%3A//youtu.be/' + videos.videoID + '&amp;src=sdkpreparse'"
+              class="fb-xfbml-parse-ignore btn btn-danger btn-round" style="background: 	#3b5998!important;">
+              <i class="fa fa-facebook"></i></a></div>
 
+              <a class="btn btn-danger btn-round" [attr.href]="'https://twitter.com/home?status=https%3A//youtu.be/' + videos.videoID" target="_blank" style="background: #1DA1F2!important;"><i class="fa fa-twitter"></i></a></div>
               </figcaption>
               </figure>
 
